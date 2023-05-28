@@ -24,6 +24,7 @@ interface videoQuestionProps {
             question: string;
             type: string;
             surveyId: number;
+            showTiming: string;
             maxAnswers: number;
             languageId: number | null;
             options: matrixQuestionOption[];
@@ -46,7 +47,6 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
     const [showQuestionTiming, setShowQuestionTiming] = useState('');
     const [playVideo, setPlayVideo] = useState(false);
     const [mandatory, setMandatory] = useState(false);
-    const [isCount, setIsCount] = useState(false);
     const [videoDuration, setVideoDuration] = useState(null);
     const useEffectExecutions = useRef(0);
     const [noOfQuestion, setNoOfQuestion] = useState<any>([])
@@ -113,7 +113,6 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
     useEffect(() => {
         const videoElement = playerRef.current.video.video;
         videoElement.addEventListener('loadedmetadata', handleVideoLoaded);
-
         return () => {
             videoElement.removeEventListener('loadedmetadata', handleVideoLoaded);
         };
@@ -127,7 +126,7 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
 
     const showQuestion = useCallback(() => {
         const player = playerRef.current?.video?.video;
-        if (!videoQuestionProps?.videoMandatory) {
+        if (videoQuestionProps?.videoMandatory) {
             return videoQuestionProps?.questions?.map((question: any, index: number) => {
                 if (index === count) {
                     if (question?.position !== position || question?.showTiming !== showQuestionTiming) {
@@ -150,6 +149,8 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
             });
         } else {
             return videoQuestionProps?.questions?.map((question: any, index: number) => {
+                console.log('1',);
+
                 if (index === count) {
                     if (question?.position !== position || question?.showTiming !== showQuestionTiming) {
                         setPosition(question?.position);
@@ -172,22 +173,21 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
 
     useEffect(() => {
         if (count < videoQuestionProps?.questions?.length && !videoQuestionProps?.videoMandatory && currentTime > Number(showQuestionTiming)) {
-            if (count < 1) {
+            if (count < 1 && currentTime > +videoQuestionProps?.questions?.[1]?.showTiming) {
                 if (useEffectExecutions.current < 2) {
                     useEffectExecutions.current += 1;
                     setTimeout(() => {
+                        console.log('rahul', { currentTime, showQuestionTiming })
                         const timer = setTimeout(() => {
                             setCount(count + 1)
                         }, 0);
                         return () => clearTimeout(timer);
                     }, Number(showQuestionTiming) * 1000)
                 }
-            } else if (count === 1 && currentTime >= +noOfQuestion?.[2]?.showTiming) {
-                setCount(2)
             }
         }
 
-    }, []);
+    }, [currentTime]);
 
 
     useEffect(() => {
@@ -202,7 +202,7 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
     return (
         <>
             <Box className="custom-video-player" sx={styles?.customPlayer} >
-                <Player ref={playerRef} src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoPlay muted >
+                <Player ref={playerRef} src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoPlay  >
                     <ControlBar disableCompletely disableDefaultControls />
                     <Shortcut clickable={false} />
                 </Player>

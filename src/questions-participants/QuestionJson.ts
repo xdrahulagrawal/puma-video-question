@@ -19,21 +19,20 @@ export const ques = {
                 "id": 1,
                 "question": "Please rate the effectiveness of our NGO's programs in the following areas:",
                 "type": "video",
-                "videoLink": "https://assets.mixkit.co/videos/preview/mixkit-ingredients-for-a-healthy-breakfast-3795-large.mp4",
+                "videoLink": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
                 "surveyId": 1,
                 "languageId": null,
                 "videoMandatory":false,
-
                 "questions": [
                     {
                         "id": 5,
-                        "question": "1) Did you like our product?",
+                        "question": "1) Did you like our products?",
                         "type": "radio",
                         "surveyId": 1,
                         "position": 'top',
                         "mandatory":false,
                         "maxAnswers": 1,
-                        "showTiming": '2',
+                        "showTiming": '3',
                         "languageId": null,
                         "options": [
                             {
@@ -69,13 +68,13 @@ export const ques = {
                         "isDeleted": false
                     },
                     {
-                        "id": 4,
+                        "id": 2,
                         "question": "Please provide any additional comments, feedback, or suggestions you may have regarding our NGO and its initiatives.Please feel free to write your response in the box below.",
                         "type": "comment",
                         "position": 'top',
                         "mandatory":false,
                         "maxAnswers": 1,
-                        "showTiming": '4',
+                        "showTiming": '7',
                         "surveyId": 2,
                         "maxNoOfChoices": null,
                         "languageId": null,
