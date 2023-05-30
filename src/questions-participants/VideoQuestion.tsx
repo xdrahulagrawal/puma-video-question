@@ -171,7 +171,7 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
 
     useEffect(() => {
         if (count < videoQuestionProps?.questions?.length && !videoQuestionProps?.videoMandatory && currentTime > Number(showQuestionTiming)) {
-            if (count < 1 && currentTime > +videoQuestionProps?.questions?.[1]?.showTiming) {
+            if (count < 1 && currentTime > +videoQuestionProps?.questions[1].showTiming) {
                 if (useEffectExecutions.current < 2) {
                     useEffectExecutions.current += 1;
                     setTimeout(() => {
@@ -179,11 +179,12 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
                             setCount(count + 1)
                         }, 0);
                         return () => clearTimeout(timer);
-                    }, Number(showQuestionTiming) * 1000)
+                    },0)
                 }
             }
         }
-
+        console.log({currentTime});
+        
     }, [currentTime]);
 
 
@@ -199,7 +200,7 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
     return (
         <>
             <Box className="custom-video-player" sx={styles?.customPlayer} >
-                <Player ref={playerRef} src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoPlay  >
+                <Player ref={playerRef} src="https://surveysalesgush.blob.core.windows.net/media/PUMA.mp4" autoPlay  >
                     <ControlBar disableCompletely disableDefaultControls />
                     <Shortcut clickable={false} />
                 </Player>

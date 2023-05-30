@@ -26,13 +26,13 @@ export const ques = {
                 "questions": [
                     {
                         "id": 5,
-                        "question": "1) Did you like our products?",
+                        "question": "1) Do you like our products?",
                         "type": "radio",
                         "surveyId": 1,
                         "position": 'top',
                         "mandatory":false,
                         "maxAnswers": 1,
-                        "showTiming": '3',
+                        "showTiming": '43',
                         "languageId": null,
                         "options": [
                             {
@@ -74,7 +74,7 @@ export const ques = {
                         "position": 'top',
                         "mandatory":false,
                         "maxAnswers": 1,
-                        "showTiming": '7',
+                        "showTiming": '58',
                         "surveyId": 2,
                         "maxNoOfChoices": null,
                         "languageId": null,
