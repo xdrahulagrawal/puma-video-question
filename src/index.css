@@ -71,6 +71,10 @@ button:focus-visible {
   }
 }
 
-input::placeholder {
-  color: #fff;
+textarea::placeholder {
+  color: #fff !important;
+}
+
+textarea{
+  color: white !important;
 }

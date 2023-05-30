@@ -16,6 +16,7 @@ const Header = () => {
     const [questions, setQuestions] = useState([ques]);
     const [switchQuestion, setSwitchQuestion] = useState(0)
     const questionSurvey = questions[0]?.data?.surveyQuestions
+    const [description, setDescription] = useState("");
 
 
     const renderQuestion = (question: any) => {
@@ -47,6 +48,8 @@ const Header = () => {
                 <Box sx={{ backgroundColor: switchQuestion === 9 ? 'white' : '#D8BFD8', height: '100%' }}>
                     <QuestionAnswerContext.Provider value={{
                         selectRadioOption,
+                        description, 
+                        setDescription,
                         setSelectRadioOption,
                     }}>
                         {showQuestion()}

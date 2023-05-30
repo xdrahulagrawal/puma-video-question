@@ -149,8 +149,6 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
             });
         } else {
             return videoQuestionProps?.questions?.map((question: any, index: number) => {
-                console.log('1',);
-
                 if (index === count) {
                     if (question?.position !== position || question?.showTiming !== showQuestionTiming) {
                         setPosition(question?.position);
@@ -177,7 +175,6 @@ const VideoQuestion: React.FC<{ question: videoQuestionProps }> = ({ question: v
                 if (useEffectExecutions.current < 2) {
                     useEffectExecutions.current += 1;
                     setTimeout(() => {
-                        console.log('rahul', { currentTime, showQuestionTiming })
                         const timer = setTimeout(() => {
                             setCount(count + 1)
                         }, 0);
